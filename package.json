@@ -10,6 +10,7 @@
     "url": "git+https://github.com/davidtaylorhq/qunit-puppeteer.git"
   },
   "dependencies": {
+    "commander": "^12.1.0",
     "puppeteer": "^19.4.1"
   },
   "keywords": [

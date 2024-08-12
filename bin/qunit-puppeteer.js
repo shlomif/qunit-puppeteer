@@ -1,6 +1,12 @@
 #! /usr/bin/env node
 
-var args = process.argv.slice(2);
+const { program } = require('commander');
+
+program.option('--browser')
+program.parse();
+
+const options = program.opts();
+var args = program.argv.slice(0);
 
 if (args.length < 1 || args.length > 2) {
   console.log("Usage: node run-qunit-chrome.js <URL> <timeout>");
@@ -9,11 +15,15 @@ if (args.length < 1 || args.length > 2) {
 
 const targetURL = args[0];
 const timeout = parseInt(args[1] || 300000, 10);
+const browser_args = { headless: "new" };
+if (options.browser) {
+    browser_args.browser = options.browser;
+}
 
 const puppeteer = require('puppeteer');
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch(browser_args);
   const page = await browser.newPage();
 
   // Attach to browser console log events, and log to node console
