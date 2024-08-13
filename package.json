@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "commander": "^12.1.0",
-    "puppeteer": "^19.4.1"
+    "puppeteer": "^23.0.2"
   },
   "keywords": [
     "qunit",
