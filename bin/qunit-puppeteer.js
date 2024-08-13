@@ -1,20 +1,21 @@
 #! /usr/bin/env node
 
-const { program } = require('commander');
+const { Command } = require('commander');
+const program = new Command();
 
-program.option('--browser')
-program.parse();
+let targetURL;
+let timeout = 300000;
+program.option('--browser <string>') .argument('<url>') .argument('[timeout]') .action((url, arg_timeout) => {targetURL = url; if (arg_timeout) { timeout = parseInt(arg_timeout); }});
+program.parse(process.argv);
 
 const options = program.opts();
-var args = program.argv.slice(0);
+//const args = program.args.slice(0);
+//
+//if (args.length < 1 || args.length > 2) {
+  //console.log("Usage: node run-qunit-chrome.js <URL> <timeout>");
+  //process.exit(1);
+//}
 
-if (args.length < 1 || args.length > 2) {
-  console.log("Usage: node run-qunit-chrome.js <URL> <timeout>");
-  process.exit(1);
-}
-
-const targetURL = args[0];
-const timeout = parseInt(args[1] || 300000, 10);
 const browser_args = { headless: "new" };
 if (options.browser) {
     browser_args.browser = options.browser;
