@@ -40,8 +40,10 @@ gmake: *** [lib/make/main.mak:487: smoke-tests] Error 2
 
 const browser_args = { headless: "new" };
 if (options.browser) {
-//    browser_args.browser = options.browser;
-    browser_args.product = options.browser;
+    browser_args.browser = options.browser;
+    if (false) {
+        browser_args.product = options.browser;
+    };
 }
 
 const puppeteer = require('puppeteer');
