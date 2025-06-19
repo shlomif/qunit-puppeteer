@@ -16,9 +16,32 @@ const options = program.opts();
   //process.exit(1);
 //}
 
+/*
+ *
+ *
+ * I got the following error with ".browser = firefox"
+ * instead of with ".product = firefox"
+
+qunit-puppeteer --browser "firefox" "http://127.0.0.1:2400/fc-solve-staging/js-fc-solve/automated-tests/"
+Error: Could not find Firefox (rev. stable_133.0.3). This can occur if either
+ 1. you did not perform an installation for Firefox before running the script (e.g. `npx puppeteer browsers install firefox`) or
+ 2. your cache path is incorrectly configured (which is: /home/shlomif/.cache/puppeteer).
+For (2), check out our guide on configuring puppeteer at https://pptr.dev/guides/configuration.
+    at FirefoxLauncher.resolveExecutablePath (/home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml/node_modules/qunit-puppeteer/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:307:27)
+    at FirefoxLauncher.executablePath (/home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml/node_modules/qunit-puppeteer/node_modules/puppeteer-core/lib/cjs/puppeteer/node/FirefoxLauncher.js:157:21)
+    at FirefoxLauncher.computeLaunchArguments (/home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml/node_modules/qunit-puppeteer/node_modules/puppeteer-core/lib/cjs/puppeteer/node/FirefoxLauncher.js:111:38)
+    at async FirefoxLauncher.launch (/home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml/node_modules/qunit-puppeteer/node_modules/puppeteer-core/lib/cjs/puppeteer/node/BrowserLauncher.js:81:28)
+    at async /home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml/node_modules/qunit-puppeteer/bin/qunit-puppeteer.js:27:19
+gmake[1]: *** [lib/make/main.mak:475: browser-tests] Error 1
+gmake[1]: Leaving directory '/home/shlomif/progs/freecell/git/fc-solve/fc-solve/site/wml'
+gmake: *** [lib/make/main.mak:487: smoke-tests] Error 2
+
+ * */
+
 const browser_args = { headless: "new" };
 if (options.browser) {
-    browser_args.browser = options.browser;
+//    browser_args.browser = options.browser;
+    browser_args.product = options.browser;
 }
 
 const puppeteer = require('puppeteer');
