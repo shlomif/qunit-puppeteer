@@ -19,9 +19,9 @@ const options = program.opts();
 /*
  *
  *
- * I got the following error with ".browser = firefox"
- * instead of with ".product = firefox"
-
+ * I got the following error with an out of date
+ * "puppeteer" package. use "ncu -u" and "npm install".
+ *
 qunit-puppeteer --browser "firefox" "http://127.0.0.1:2400/fc-solve-staging/js-fc-solve/automated-tests/"
 Error: Could not find Firefox (rev. stable_133.0.3). This can occur if either
  1. you did not perform an installation for Firefox before running the script (e.g. `npx puppeteer browsers install firefox`) or
